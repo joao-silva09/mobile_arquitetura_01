@@ -38,7 +38,7 @@ class ProductViewModel extends StateNotifier<AsyncValue<List<Product>>> {
   }
 
   void toggleFavorite(int productId) {
-    final currentProducts = state.value;
+    final currentProducts = state.asData?.value;
     if (currentProducts == null) {
       return;
     }

@@ -8,11 +8,12 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<List<Product>> getProducts() async {
     final models = await datasource.getProducts();
-    return models
-        .map(
-          (m) =>
-              Product(id: m.id, title: m.title, price: m.price, image: m.image),
-        )
-        .toList();
+    return models.map((model) => model.toEntity()).toList();
+  }
+
+  @override
+  Future<Product> getProductById(int id) async {
+    final model = await datasource.getProductById(id);
+    return model.toEntity();
   }
 }
